@@ -1,0 +1,6 @@
+# Copy to terraform.tfvars and adjust. Defaults work as-is.
+aws_region        = "us-east-1"
+project_name      = "demo"
+environment       = "dev"
+log_retention_days = 90
+required_tag_key  = "Project"
