@@ -11,13 +11,13 @@ I'm Naveen Anand, a cloud and DevOps leader and freelance cloud solution archite
 
 ## Projects
 
-| Project | Stack | What it shows | Status |
-|---|---|---|---|
-| [ecs-fargate-terraform](projects/ecs-fargate-terraform) | AWS, Terraform | A containerized service on ECS Fargate behind an ALB, in private subnets with NAT egress | Ready |
-| [terraform-remote-state](projects/terraform-remote-state) | AWS, Terraform | S3 + DynamoDB remote state with locking | Ready |
-| newrelic-teams-alerting | New Relic, IaC | Alerting as code with runbook-linked conditions | Planned |
-| azure-landing-zone | Azure, Bicep/Terraform | Subscription baseline: governance, policy, networking | Planned |
-| observability-starter | Dashboards, SLOs | Golden-signal dashboards and SLO burn-rate alerts | Planned |
+| Project | Cloud | Stack | What it shows | Status |
+|---|---|---|---|---|
+| [ecs-fargate-terraform](projects/ecs-fargate-terraform) | ![AWS](https://img.shields.io/badge/AWS-232F3E?logo=amazonwebservices&logoColor=FF9900) | Terraform | A containerized service on ECS Fargate behind an ALB, in private subnets with NAT egress | Ready |
+| [terraform-remote-state](projects/terraform-remote-state) | ![AWS](https://img.shields.io/badge/AWS-232F3E?logo=amazonwebservices&logoColor=FF9900) | Terraform | S3 + DynamoDB remote state with locking | Ready |
+| [azure-landing-zone](projects/azure-landing-zone) | ![Azure](https://img.shields.io/badge/Azure-0078D4?logo=microsoftazure&logoColor=white) | Terraform | Hub-spoke networking, governance policy, central Log Analytics, Key Vault | Ready |
+| newrelic-teams-alerting | ![Cloud-agnostic](https://img.shields.io/badge/Cloud--agnostic-555555) | New Relic, IaC | Alerting as code with runbook-linked conditions | Planned |
+| observability-starter | ![Cloud-agnostic](https://img.shields.io/badge/Cloud--agnostic-555555) | Dashboards, SLOs | Golden-signal dashboards and SLO burn-rate alerts | Planned |
 
 ---
 

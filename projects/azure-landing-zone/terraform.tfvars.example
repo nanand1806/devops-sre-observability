@@ -1,0 +1,6 @@
+# Copy to terraform.tfvars and set your subscription ID.
+subscription_id   = "00000000-0000-0000-0000-000000000000"
+location          = "centralindia"
+project_name      = "demo"
+environment       = "dev"
+allowed_locations = ["centralindia", "southindia"]
