@@ -52,6 +52,22 @@ Cloud resources cost money. Each project documents what it provisions and how to
 
 ---
 
+## Security
+
+This repo is hardened so nothing sensitive ever ships and nobody has more access than they need:
+
+- **No secrets in the repo.** All account IDs, ARNs, keys, hostnames, and webhook URLs are placeholders. Real credentials are passed at runtime via environment variables.
+- **Secret scanning + push protection** (GitHub native) block secrets at push time.
+- **gitleaks** runs in CI on every push and pull request as a second layer.
+- **`main` is protected.** Changes go through a pull request, CI (gitleaks + Terraform validate) must pass before merge, and force-pushes and branch deletion are blocked.
+- **Least-privilege CI.** The workflow `GITHUB_TOKEN` is read-only.
+- **Pinned actions.** Third-party GitHub Actions are pinned to commit SHAs, not movable tags, to prevent supply-chain tampering.
+- **Dependabot** alerts and automated security updates are enabled.
+
+Found something that looks like a security issue? Open an issue or reach out via [LinkedIn](https://www.linkedin.com/in/anandnaveen/).
+
+---
+
 ## License
 
 [MIT](LICENSE). Use, adapt, and learn from anything here.
