@@ -1,0 +1,15 @@
+title = "devops-sre-observability gitleaks config"
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Documented placeholder values used throughout the examples"
+regexes = [
+  '''123456789012''',
+  '''example\.com''',
+  '''EXAMPLE''',
+]
+paths = [
+  '''.*\.tfvars\.example''',
+]
