@@ -24,7 +24,7 @@ I'm Naveen Anand, a cloud and DevOps leader and freelance cloud solution archite
 
 ## Companion writing
 
-Each project pairs with a concept write-up in [`docs/`](docs) aimed at engineers entering the field, with a "going deeper" layer for the experienced. These also feed my articles on [Medium (@anandnaveen)](https://medium.com/@anandnaveen).
+Each project pairs with a concept write-up in [`docs/`](docs) aimed at engineers entering the field, with a "going deeper" layer for the experienced. Long-form articles live in [`posts/`](posts) and are also published on [Medium (@anandnaveen)](https://medium.com/@anandnaveen).
 
 ---
 
