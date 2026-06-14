@@ -1,0 +1,16 @@
+# Rename to backend.tf, fill in the values from the bootstrap outputs,
+# then run:  terraform init -migrate-state
+#
+# Note: backend blocks cannot use variables. The values must be literals.
+# The `key` is the path to this project's state file inside the bucket;
+# give each project a unique key so they never collide.
+
+terraform {
+  backend "s3" {
+    bucket         = "REPLACE_WITH_YOUR_STATE_BUCKET"
+    key            = "example-consumer/terraform.tfstate"
+    region         = "us-east-1"
+    dynamodb_table = "terraform-locks"
+    encrypt        = true
+  }
+}

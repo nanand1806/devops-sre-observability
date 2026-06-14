@@ -14,7 +14,7 @@ I'm Naveen Anand, a cloud and DevOps leader and freelance cloud solution archite
 | Project | Stack | What it shows | Status |
 |---|---|---|---|
 | [ecs-fargate-terraform](projects/ecs-fargate-terraform) | AWS, Terraform | A containerized service on ECS Fargate behind an ALB, in private subnets with NAT egress | Ready |
-| terraform-remote-state | AWS, Terraform | S3 + DynamoDB remote state with locking | Planned |
+| [terraform-remote-state](projects/terraform-remote-state) | AWS, Terraform | S3 + DynamoDB remote state with locking | Ready |
 | newrelic-teams-alerting | New Relic, IaC | Alerting as code with runbook-linked conditions | Planned |
 | azure-landing-zone | Azure, Bicep/Terraform | Subscription baseline: governance, policy, networking | Planned |
 | observability-starter | Dashboards, SLOs | Golden-signal dashboards and SLO burn-rate alerts | Planned |
