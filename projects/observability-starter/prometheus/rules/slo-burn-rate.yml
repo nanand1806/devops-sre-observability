@@ -1,0 +1,110 @@
+# Multi-window, multi-burn-rate SLO alerting (Google SRE Workbook).
+#
+# SLO: 99.9% of requests succeed  ->  error budget = 0.1% (0.001).
+# SLI: ratio of 5xx responses to all responses, measured here on
+# Prometheus's own HTTP metrics so the example produces data out of the box.
+# Point these at your service's request metrics in real use.
+#
+# "Burn rate" = how many times faster than allowed you are spending the
+# error budget. Burn rate 1 exhausts the 30-day budget in exactly 30 days;
+# burn rate 14.4 exhausts 2% of it in 1 hour.
+#
+# Each alert pairs a long window (is the problem real and sustained?) with
+# a short window (is it still happening now?) to fire fast and recover fast.
+
+groups:
+  - name: slo_sli_recording
+    rules:
+      - record: job:slo_errors:ratio_rate5m
+        expr: |
+          sum(rate(prometheus_http_requests_total{code=~"5.."}[5m]))
+          /
+          sum(rate(prometheus_http_requests_total[5m]))
+      - record: job:slo_errors:ratio_rate30m
+        expr: |
+          sum(rate(prometheus_http_requests_total{code=~"5.."}[30m]))
+          /
+          sum(rate(prometheus_http_requests_total[30m]))
+      - record: job:slo_errors:ratio_rate1h
+        expr: |
+          sum(rate(prometheus_http_requests_total{code=~"5.."}[1h]))
+          /
+          sum(rate(prometheus_http_requests_total[1h]))
+      - record: job:slo_errors:ratio_rate2h
+        expr: |
+          sum(rate(prometheus_http_requests_total{code=~"5.."}[2h]))
+          /
+          sum(rate(prometheus_http_requests_total[2h]))
+      - record: job:slo_errors:ratio_rate6h
+        expr: |
+          sum(rate(prometheus_http_requests_total{code=~"5.."}[6h]))
+          /
+          sum(rate(prometheus_http_requests_total[6h]))
+      - record: job:slo_errors:ratio_rate1d
+        expr: |
+          sum(rate(prometheus_http_requests_total{code=~"5.."}[1d]))
+          /
+          sum(rate(prometheus_http_requests_total[1d]))
+      - record: job:slo_errors:ratio_rate3d
+        expr: |
+          sum(rate(prometheus_http_requests_total{code=~"5.."}[3d]))
+          /
+          sum(rate(prometheus_http_requests_total[3d]))
+
+  - name: slo_burn_rate_alerts
+    rules:
+      # Fast burn: 14.4x. Burns 2% of the monthly budget in 1 hour. Page.
+      - alert: ErrorBudgetBurnFast
+        expr: |
+          job:slo_errors:ratio_rate1h > (14.4 * 0.001)
+          and
+          job:slo_errors:ratio_rate5m > (14.4 * 0.001)
+        for: 2m
+        labels:
+          severity: page
+          slo: availability
+        annotations:
+          summary: "Fast error-budget burn (14.4x) on availability SLO"
+          description: "Burning the 99.9% budget 14.4x faster than allowed. 1h and 5m windows both breached."
+
+      # Medium burn: 6x. Burns 5% of the monthly budget in 6 hours. Page.
+      - alert: ErrorBudgetBurnMedium
+        expr: |
+          job:slo_errors:ratio_rate6h > (6 * 0.001)
+          and
+          job:slo_errors:ratio_rate30m > (6 * 0.001)
+        for: 15m
+        labels:
+          severity: page
+          slo: availability
+        annotations:
+          summary: "Medium error-budget burn (6x) on availability SLO"
+          description: "Burning the 99.9% budget 6x faster than allowed. 6h and 30m windows both breached."
+
+      # Slow burn: 3x. Open a ticket, not a page.
+      - alert: ErrorBudgetBurnSlow
+        expr: |
+          job:slo_errors:ratio_rate1d > (3 * 0.001)
+          and
+          job:slo_errors:ratio_rate2h > (3 * 0.001)
+        for: 1h
+        labels:
+          severity: ticket
+          slo: availability
+        annotations:
+          summary: "Slow error-budget burn (3x) on availability SLO"
+          description: "Burning the 99.9% budget 3x faster than allowed. 1d and 2h windows both breached."
+
+      # Very slow burn: 1x. Trend worth a ticket before it becomes urgent.
+      - alert: ErrorBudgetBurnVerySlow
+        expr: |
+          job:slo_errors:ratio_rate3d > (1 * 0.001)
+          and
+          job:slo_errors:ratio_rate6h > (1 * 0.001)
+        for: 3h
+        labels:
+          severity: ticket
+          slo: availability
+        annotations:
+          summary: "Very slow error-budget burn (1x) on availability SLO"
+          description: "Steadily consuming the 99.9% budget. 3d and 6h windows both breached."

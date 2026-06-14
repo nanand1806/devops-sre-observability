@@ -1,0 +1,20 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+# SLO recording and alerting rules are loaded from here.
+rule_files:
+  - /etc/prometheus/rules/*.yml
+
+scrape_configs:
+  # Prometheus scrapes itself. Its own HTTP metrics
+  # (prometheus_http_requests_total, *_duration_seconds) give us a real,
+  # always-populated SLI to build the SLO example on with no extra app.
+  - job_name: prometheus
+    static_configs:
+      - targets: ["localhost:9090"]
+
+  # Host metrics for the saturation signal.
+  - job_name: node
+    static_configs:
+      - targets: ["node-exporter:9100"]
