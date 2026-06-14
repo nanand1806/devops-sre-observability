@@ -17,7 +17,7 @@ I'm Naveen Anand, a cloud and DevOps leader and freelance cloud solution archite
 | [terraform-remote-state](projects/terraform-remote-state) | ![AWS](https://img.shields.io/badge/AWS-232F3E?logo=amazonwebservices&logoColor=FF9900) | Terraform | S3 + DynamoDB remote state with locking | Ready |
 | [aws-landing-zone](projects/aws-landing-zone) | ![AWS](https://img.shields.io/badge/AWS-232F3E?logo=amazonwebservices&logoColor=FF9900) | Terraform | CloudTrail, AWS Config rules, GuardDuty, account-wide guardrails | Ready |
 | [azure-landing-zone](projects/azure-landing-zone) | ![Azure](https://img.shields.io/badge/Azure-0078D4?logo=microsoftazure&logoColor=white) | Terraform | Hub-spoke networking, governance policy, central Log Analytics, Key Vault | Ready |
-| newrelic-teams-alerting | ![Cloud-agnostic](https://img.shields.io/badge/Cloud--agnostic-555555) | New Relic, IaC | Alerting as code with runbook-linked conditions | Planned |
+| [newrelic-golden-signals](projects/newrelic-golden-signals) | ![New Relic](https://img.shields.io/badge/New%20Relic-1CE783?logo=newrelic&logoColor=black) | Terraform | Golden-signal NRQL alerts routed to Slack and Teams via a workflow | Ready |
 | observability-starter | ![Cloud-agnostic](https://img.shields.io/badge/Cloud--agnostic-555555) | Dashboards, SLOs | Golden-signal dashboards and SLO burn-rate alerts | Planned |
 
 ---

@@ -1,0 +1,19 @@
+# Copy to terraform.tfvars and fill in. Keep secrets OUT of this file in
+# real use: pass api_key and webhook URLs via environment variables
+# (TF_VAR_api_key, TF_VAR_slack_webhook_url, TF_VAR_teams_webhook_url).
+
+account_id  = 1234567
+region      = "US"
+app_name    = "my-service"
+policy_name = "Golden Signals - my-service"
+
+latency_threshold_seconds        = 1.5
+error_rate_threshold_percent     = 5
+min_throughput_rpm               = 1
+cpu_saturation_threshold_percent = 85
+runbook_url                      = "https://example.com/runbooks/golden-signals"
+
+# Placeholders only. Prefer environment variables for these.
+api_key           = "NRAK-REPLACE_WITH_YOUR_USER_API_KEY"
+slack_webhook_url = "https://hooks.slack.com/services/REPLACE_WITH_YOUR_SLACK_WEBHOOK"
+teams_webhook_url = "https://example.webhook.office.com/REPLACE_WITH_YOUR_TEAMS_WEBHOOK"
